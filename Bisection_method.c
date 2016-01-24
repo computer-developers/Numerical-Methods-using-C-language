@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
-#define deci 0.1
+#define deci 0.01
 float c1,c2,c3,l,u,m;
 float f(float);
 void start();
@@ -11,7 +11,7 @@ void main()
 	scanf("%f %f %f",&c1,&c2,&c3);
 	start();
 	bisect(l,u);
-	printf("root=%.1f",m);
+	printf("root=%.2f",m);
 }
 float f(float x)
 {
@@ -44,18 +44,10 @@ void start()
 	}
 	if(f(0)<0)
 	{
-		//printf("check 4");
 		if(f(1)<f(0))
-		{
-		//			printf("check 3");
-
 			for(i=-1;f(i+1)<0;i--)u=i;
-		}
 		else
-		{
-		//	printf("check 6");
 			for(i=1;f(i-1)<0;i++)u=i;
-		}
 		l=u-1;
 		return;
 	}
