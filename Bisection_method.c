@@ -31,29 +31,28 @@ void start()
 	}
 	if(f(0)>0)
 	{
-		if(f(1)>f(0))
-		{
-			for(i=-1;f(i+1)>0;i--)l=i;
-		}
+		u=0;
+		for(i=1;f(i)>0&&f(-i)>0;i++);
+		if(f(i)<0)
+			l=i;
 		else
-		{
-			for(i=1;f(i-1)>0;i++)l=i;
-		}
-		u=l+1;
+			l=-i;
 		return;
 	}
 	if(f(0)<0)
 	{
-		if(f(1)<f(0))
-			for(i=-1;f(i+1)<0;i--)u=i;
+		l=0;
+		for(i=1;f(i)<0&&f(-i)<0;i++);
+		if(f(i)>0)
+			u=i;
 		else
-			for(i=1;f(i-1)<0;i++)u=i;
-		l=u-1;
+			u=-i;
 		return;
 	}
 }
 void bisect(float a,float b)
 {
+	printf("\n l=%f u= %f m= %f f(m)=%f",l,u,m,f(m));
 	if(a-b<deci&&a-b>-deci)
 		return;
 	m=(a+b)/2;
