@@ -1,3 +1,18 @@
+/*
+	This program can be able to find roots of eqution.
+	The input eqution must be in following pattern..
+	Some examples of input equation..
+		x^3-x-11
+		x$3-x-11
+		X^3-1x-11
+		x^2+24X^2+87x-24
+		
+	NOTE :- input equation can start with sign(+,-) or number(0-9) or x(X,x).
+			don't leave space between any element of eqution.
+			eqution must ended with new-line character(enter).
+			don't press any other keys like backspace or delete.
+	Limitation :- this program can not be able to solve equation which contain log or trigonometric functions.  	
+*/
 #include<stdio.h>
 #include<conio.h>
 #define DECI 3
@@ -17,16 +32,9 @@ void bisect(float,float);
 void main()
 {
 	if(!scan())return;
-	struct eq *h;
-	h=first;
-	for(;h!=NULL;)
-	{
-		printf("\ns=%d c=%f p=%d",h->s,h->c,h->p);
-		h=h->l; 
-	}
 	start();
 	bisect(l,u);
-	printf("\nF(0) = %f root = %.3f f(m)=%f",f(0),m,f(m));
+	printf("\nroot = %.3f",m);
 }
 float f(float x)
 {
@@ -94,9 +102,7 @@ start:
 		h->s=1;
 		h->c=1;
 		if(t==NULL)
-		{
 			t=h;
-		}
 		else
 		{
 			t->l=h;
@@ -105,9 +111,7 @@ start:
 		if(first==NULL)
 			first=t;
 		if(ip(c)==5||ip(c)==4)
-		{
 			goto err;
-		}
 		else if(ip(c)==1)
 		{
 			t->s=1;
@@ -141,18 +145,14 @@ num:
 			goto num; 
 		}
 		else if(ip(c)==2)
-		{
 			goto start;
-		}
 		else if(ip(c)==3)
 		{
 			t->c=k;
 			goto var;
 		}
 		if(ip(c)==5||ip(c)==4)
-		{
 			goto err;
-		}
 sym:		
 		for(;!ip(c=getche()););
 		if(ip(c)==1)
@@ -166,24 +166,16 @@ sym:
 			goto var;
 		}
 		if(ip(c)==5||ip(c)==4||ip(c)==2)
-		{
 			goto err;
-		}
 var:
 		t->p=1;
 		if(!ip(c=getche()))return 1;
 		else if(ip(c)==2)
-		{
 			goto start; 
-		}
 		else if(ip(c)==4)
-		{
 			goto exp;
-		}
 		if(ip(c)==1||ip(c)==3||ip(c)==5)
-		{
 			goto err;
-		}
 exp:
 		for(;!ip(c=getche()););
 		if(ip(c)==1)
@@ -192,13 +184,9 @@ exp:
 			goto err;
 		if(!ip(c=getche()))return 1;
 		else if(ip(c)==2)
-		{
 			goto start; 
-		}
 		if(ip(c)==5||ip(c)==4||ip(c)==1||ip(c)==3)
-		{
 			goto err;
-		}
 err:	printf("\ninvalid equation...");
 		return 0;
 }
@@ -216,3 +204,4 @@ int ip(char c)
 		return 0;
 	return 5;
 }
+//		Like to see you again....
