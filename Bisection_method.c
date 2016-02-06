@@ -16,6 +16,7 @@
 */
 #include<stdio.h>
 #include<conio.h>
+#include<math.h>
 #define DECI 3
 struct eq
 {
