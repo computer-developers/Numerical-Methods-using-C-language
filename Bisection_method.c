@@ -1,4 +1,5 @@
 /*
+	Designed by neel patel..
 	This program can be able to find roots of eqution.
 	The input eqution must be in following pattern..
 	Some examples of input equation..
@@ -23,7 +24,7 @@ struct eq
 	int s;
 	struct eq *l;
 }*first=NULL;
-float c1,c2,c3,l,u,m;
+float l,u,m;
 float f(float);
 void start();
 int ip(char);
