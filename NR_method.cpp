@@ -7,22 +7,18 @@ class function{
 	public:
 		float f(float x)
 		{
-			float y;
-			y=x*x*x-x-11;
-			return y;
+			return x*x*x-x-11;
 		}
 		float f1(float x)
 		{
-			float y;
-			y=3*x*x-1;
-			return y;
+			return 3*x*x-1;
 		}
 };
 class NR
 {
 	private:
 		float x0,m;
-		void start(function F)
+		void start()
 		{
 			printf("\nenter initial value..");
 			scanf("%f",&x0);
@@ -37,7 +33,7 @@ class NR
 	public:	
 		float nr(function F)
 		{
-			start(F);
+			start();
 			meth(x0,F);
 			return m;
 		}			
