@@ -18,10 +18,33 @@ class NR
 {
 	private:
 		float x0,m;
-		void start()
+		void start(function F)
 		{
-			printf("\nenter initial value..");
-			scanf("%f",&x0);
+			int i;
+			if(F.f(0)==0)
+			{
+				x0=0;
+				m=0;
+				return;
+			}
+			if(F.f(0)>0)
+			{
+				for(i=1;F.f(i)>0&&F.f(-i)>0;i++);
+				if(F.f(i)<0)
+					x0=i;
+				else
+					x0=-i;
+				return;
+			}
+			if(F.f(0)<0)
+			{
+				for(i=1;(F.f(i)<0) && (F.f(-i)<0);i++);
+				if(F.f(i)>0)
+					x0=(float)i;
+				else
+					x0=-i;
+				return;
+			}
 		}
 		void meth(float g,function F)
 		{
@@ -33,7 +56,7 @@ class NR
 	public:	
 		float nr(function F)
 		{
-			start();
+			start(F);
 			meth(x0,F);
 			return m;
 		}			
