@@ -3,14 +3,151 @@
 #include<conio.h>
 #include<math.h>
 #define DECI 6
-class function{
+class function
+{
+	private:
+		struct eq
+		{
+			float c;
+			int p;
+			int s;
+			struct eq *l;
+		}*first=NULL;		
+		int ip(char c)
+		{
+			if(c>='0'&&c<='9')
+			 	return 1;
+			if(c=='+'||c=='-')
+				return 2;
+			if(c=='X'||c=='x')
+				return 3;
+			if(c=='^'||c=='$')
+				return 4;
+			if(c==13)
+				return 0;
+			return 5;
+		}		
+		int scan()
+		{
+			int k;
+			char c;
+			struct eq *t=NULL,*h=NULL;
+			printf("enter polynominal equation in x...");
+				for(;!ip(c=getche()););
+		start:
+				h=new struct eq;
+				h->l=NULL;
+				h->p=0;
+				h->s=1;
+				h->c=1;
+				if(t==NULL)
+					t=h;
+				else
+				{
+					t->l=h;
+					t=t->l;
+				}
+				if(first==NULL)
+					first=t;
+				if(ip(c)==5||ip(c)==4)
+					goto err;
+				else if(ip(c)==1)
+				{
+					t->s=1;
+					k=c-48;
+					goto num; 
+				}
+				else if(ip(c)==2)
+				{
+					if(c=='-')
+						t->s=-1;
+					else
+						t->s=1;
+					k=1;
+					goto sym;
+				}
+				else if(ip(c)==3)
+				{
+					t->s=1;
+					t->c=1;
+					goto var;
+				}
+		num:		
+				if(!ip(c=getche()))
+				{
+					t->c=k;
+					return 1;
+				}
+				else if(ip(c)==1)
+				{
+					k=k*10+c-48;
+					goto num; 
+				}
+				else if(ip(c)==2)
+					goto start;
+				else if(ip(c)==3)
+				{
+					t->c=k;
+					goto var;
+				}
+				if(ip(c)==5||ip(c)==4)
+					goto err;
+		sym:		
+				for(;!ip(c=getche()););
+				if(ip(c)==1)
+				{
+					k=c-48;
+					goto num; 
+				}
+				else if(ip(c)==3)
+				{
+					t->c=1;
+					goto var;
+				}
+				if(ip(c)==5||ip(c)==4||ip(c)==2)
+					goto err;
+		var:
+				t->p=1;
+				if(!ip(c=getche()))return 1;
+				else if(ip(c)==2)
+					goto start; 
+				else if(ip(c)==4)
+					goto exp;
+				if(ip(c)==1||ip(c)==3||ip(c)==5)
+					goto err;
+		exp:
+				for(;!ip(c=getche()););
+				if(ip(c)==1)
+					t->p=c-48;
+				else
+					goto err;
+				if(!ip(c=getche()))return 1;
+				else if(ip(c)==2)
+					goto start; 
+				if(ip(c)==5||ip(c)==4||ip(c)==1||ip(c)==3)
+					goto err;
+		err:	printf("\ninvalid equation...");
+				return 0;
+		}
 	public:
 		float f(float x)
 		{
-			float y;
-			y=x*x*x-x-11;
+			float y=0;
+			struct eq *t;
+			t=first;
+			for(;t!=NULL;)
+			{
+				y=y+((t->c) * (t->s) * pow(x,t->p));
+				t=t->l; 
+			}
 			return y;
 		}
+		function()
+		{
+			first=NULL;
+			for(;!scan();)
+				first=NULL;
+		}		
 };
 class SECANT
 {
