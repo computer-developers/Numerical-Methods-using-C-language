@@ -18,36 +18,33 @@ class SECANT
 		float l,u,m;
 		void start(function F)
 		{
-			printf("\nenter limits..");
-			for(;!scan(F);)
-				printf("\ninvalid!!!");
-		}
-		int scan(function F)
-		{
-			scanf("%f %f",&l,&u);
-			if(F.f(u)<0)
+			int i;
+			if(F.f(0)==0)
 			{
-				if(F.f(l)<0)
-					return 0;
-				else
-					{
-						l=l+u;
-						u=l-u;
-						l=l-u;
-						return 1;
-					}
+				l=0;
+				u=0;
+				m=0;
+				return;
 			}
-			if(F.f(u)>0)
+			if(F.f(0)>0)
 			{
-				if(F.f(l)>0)
-					return 0;
+				u=0;
+				for(i=1;F.f(i)>0&&F.f(-i)>0;i++);
+				if(F.f(i)<0)
+					l=i;
 				else
-					return 1;	
+					l=-i;
+				return;
 			}
-			else
+			if(F.f(0)<0)
 			{
-				m=u;
-				return 1;
+				l=0;
+				for(i=1;F.f(i)<0&&F.f(-i)<0;i++);
+				if(F.f(i)>0)
+					u=i;
+				else
+					u=-i;
+				return;
 			}
 		}
 		void meth(float g,float h,function F)
