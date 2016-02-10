@@ -52,28 +52,19 @@ class FP
 		}
 		void meth(float g,float h,function F)
 		{
-			printf("\ncheck2");
 			m=(g*F.f(h)-h*F.f(g))/(F.f(h)-F.f(g));
-			printf("\ncheck5 %f %f %f %f",m,F.f(m),g,h);
 			if(k-m<pow(0.1,DECI)&&m-k<pow(0.1,DECI))
 				return;
 			k=m;
 			if(F.f(m)>0)
-			{
-				printf("\ncheck3");
 				meth(g,m,F);
-			}
 			else
-			{
-				printf("\ncheck4");
 				meth(m,h,F);
-			}
 		}
 	public:	
 		float fp(function F)
 		{
 			start(F);
-			printf("\ncheck1");
 			meth(l,u,F);
 			return m;
 		}			
