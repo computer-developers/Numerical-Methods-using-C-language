@@ -57,7 +57,7 @@ class FP
 			printf("\ncheck5 %f %f %f %f",m,F.f(m),g,h);
 			if(k-m<pow(0.1,DECI)&&m-k<pow(0.1,DECI))
 				return;
-			m=k;
+			k=m;
 			if(F.f(m)>0)
 			{
 				printf("\ncheck3");
