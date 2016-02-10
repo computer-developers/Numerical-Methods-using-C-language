@@ -17,7 +17,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<math.h>
-#define DECI 3
+#define DECI 6
 struct eq
 {
 	float c;
@@ -33,9 +33,8 @@ int scan();
 void bisect(float,float);
 void main()
 {
-	if(!scan())return;
+	for(;!scan();)printf("\nenter polynominal equation in x...");
 	start();
-	printf("\nl=%f u=%f fl=%f fu=%f",l,u,f(l),f(u));
 	bisect(l,u);
 	printf("\nroot = %.3f",m);
 }
@@ -194,6 +193,7 @@ exp:
 		if(ip(c)==5||ip(c)==4||ip(c)==1||ip(c)==3)
 			goto err;
 err:	printf("\ninvalid equation...");
+		first=NULL;
 		return 0;
 }
 int ip(char c)

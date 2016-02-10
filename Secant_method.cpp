@@ -146,6 +146,7 @@ class function
 				if(ip(c)==5||ip(c)==4||ip(c)==1||ip(c)==3)
 					goto err;
 		err:	printf("\ninvalid equation...");
+				first=NULL;
 				return 0;
 		}
 	public:
@@ -205,9 +206,9 @@ class SECANT
 		}
 		void meth(float g,float h,function F)
 		{
-			m=g-F.f(g)*(g-h)/(F.f(g)-F.f(h));
-			if(g-m<pow(0.1,DECI)&&m-g<pow(0.1,DECI))
+			if(F.f(m)==0||g-h<pow(0.1,DECI)&&h-g<pow(0.1,DECI))
 				return;
+			m=g-F.f(g)*(g-h)/(F.f(g)-F.f(h));
 			meth(m,g,F);
 		}
 	public:	

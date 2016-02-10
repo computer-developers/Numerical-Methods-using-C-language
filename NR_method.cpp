@@ -146,6 +146,7 @@ class function
 				if(ip(c)==5||ip(c)==4||ip(c)==1||ip(c)==3)
 					goto err;
 		err:	printf("\ninvalid equation...");
+				first=NULL;
 				return 0;
 		}
 	public:
