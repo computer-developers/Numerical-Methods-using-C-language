@@ -18,9 +18,34 @@ class FP
 		float l,u,m,k;
 		void start(function F)
 		{
-			printf("\nenter limits..");
-			for(;!scan(F);)
-				printf("\ninvalid!!!");
+			int i;
+			if(F.f(0)==0)
+			{
+				l=0;
+				u=0;
+				m=0;
+				return;
+			}
+			if(F.f(0)>0)
+			{
+				u=0;
+				for(i=1;F.f(i)>0&&F.f(-i)>0;i++);
+				if(F.f(i)<0)
+					l=i;
+				else
+					l=-i;
+				return;
+			}
+			if(F.f(0)<0)
+			{
+				l=0;
+				for(i=1;F.f(i)<0&&F.f(-i)<0;i++);
+				if(F.f(i)>0)
+					u=i;
+				else
+					u=-i;
+				return;
+			}
 		}
 		int scan(function F)
 		{
