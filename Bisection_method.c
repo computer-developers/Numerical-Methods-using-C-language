@@ -35,6 +35,7 @@ void main()
 {
 	if(!scan())return;
 	start();
+	printf("\nl=%f u=%f fl=%f fu=%f",l,u,f(l),f(u));
 	bisect(l,u);
 	printf("\nroot = %.3f",m);
 }
@@ -147,7 +148,10 @@ num:
 			goto num; 
 		}
 		else if(ip(c)==2)
+		{
+			t->c=k;
 			goto start;
+		}
 		else if(ip(c)==3)
 		{
 			t->c=k;

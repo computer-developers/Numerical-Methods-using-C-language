@@ -100,7 +100,10 @@ class function
 					goto num; 
 				}
 				else if(ip(c)==2)
+				{
+					t->c=k;
 					goto start;
+				}
 				else if(ip(c)==3)
 				{
 					t->c=k;
