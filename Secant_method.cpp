@@ -5,13 +5,13 @@
 	Some examples of input equation..
 		x^3-x-11
 		x$3-x-11
-		X^3-1x-11
+		2X^3-1x-11
 		x^2+24X^2+87x-24
-		
 	NOTE :- input equation can start with sign(+,-) or number(0-9) or x(X,x).
 			don't leave space between any element of eqution.
 			eqution must ended with new-line character(enter).
 			don't press any other keys like backspace or delete.
+			if at lest one real root of equation is not possible,then the program will go into a infinite loop.
 	Limitation :- this program can not be able to solve equation which contain log or trigonometric functions.  	
 */
 #include<iostream>
