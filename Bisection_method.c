@@ -11,7 +11,8 @@
 			don't leave space between any element of eqution.
 			eqution must ended with new-line character(enter).
 			don't press any other keys like backspace or delete.
-			if at lest one real root of equation is not possible,then the program will go into a infinite loop.
+			equation must have at least one root for value of x between -9999999 to 9999999,
+			if not then program display root not found message.
 	Limitation :- this program can not be able to solve equation which contain log or trigonometric functions.  	
 */
 #include<stdio.h>
@@ -27,14 +28,18 @@ struct eq
 }*first=NULL;
 float l,u,m;
 float f(float);
-void start();
+int start();
 int ip(char);
 int scan();
 void bisect(float,float);
 void main()
 {
 	for(;!scan();)printf("\nenter polynominal equation in x...");
-	start();
+	if(!start())
+	{
+		printf("\n\nreal root is not possible for this equation!!!!");
+		return;
+	}
 	bisect(l,u);
 	printf("\nroot = %.3f",m);
 }
@@ -50,7 +55,7 @@ float f(float x)
 	}
 	return y;
 }
-void start()
+int start()
 {
 	int i;
 	if(f(0)==0)
@@ -58,27 +63,27 @@ void start()
 		l=0;
 		u=0;
 		m=0;
-		return;
+		return 1;
 	}
 	if(f(0)>0)
 	{
 		u=0;
-		for(i=1;f(i)>0&&f(-i)>0;i++);
+		for(i=1;f(i)>0&&f(-i)>0;i++)if(i>=9999999)return 0;
 		if(f(i)<0)
 			l=i;
 		else
 			l=-i;
-		return;
+		return 1;
 	}
 	if(f(0)<0)
 	{
 		l=0;
-		for(i=1;f(i)<0&&f(-i)<0;i++);
+		for(i=1;f(i)<0&&f(-i)<0;i++)if(i>=9999999)return 0;
 		if(f(i)>0)
 			u=i;
 		else
 			u=-i;
-		return;
+		return 1;
 	}
 }
 void bisect(float a,float b)

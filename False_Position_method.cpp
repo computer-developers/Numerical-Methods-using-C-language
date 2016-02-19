@@ -11,7 +11,8 @@
 			don't leave space between any element of eqution.
 			eqution must ended with new-line character(enter).
 			don't press any other keys like backspace or delete.
-			if at lest one real root of equation is not possible,then the program will go into a infinite loop.
+			equation must have at least one root for value of x between -9999999 to 9999999,
+			if not then program display root not found message.
 	Limitation :- this program can not be able to solve equation which contain log or trigonometric functions.  	
 */
 #include<iostream>
@@ -173,7 +174,7 @@ class FP
 {
 	private:
 		float l,u,m,k;
-		void start(function F)
+		int start(function F)
 		{
 			int i;
 			if(F.f(0)==0)
@@ -181,27 +182,27 @@ class FP
 				l=0;
 				u=0;
 				m=0;
-				return;
+				return 1;
 			}
 			if(F.f(0)>0)
 			{
 				u=0;
-				for(i=1;F.f(i)>0&&F.f(-i)>0;i++);
+				for(i=1;F.f(i)>0&&F.f(-i)>0;i++)if(i>=9999999)return 0;
 				if(F.f(i)<0)
 					l=i;
 				else
 					l=-i;
-				return;
+				return 1;
 			}
 			if(F.f(0)<0)
 			{
 				l=0;
-				for(i=1;F.f(i)<0&&F.f(-i)<0;i++);
+				for(i=1;F.f(i)<0&&F.f(-i)<0;i++)if(i>=9999999)return 0;
 				if(F.f(i)>0)
 					u=i;
 				else
 					u=-i;
-				return;
+				return 1;
 			}
 		}
 		int scan(function F)
@@ -250,7 +251,11 @@ class FP
 	public:	
 		float fp(function F)
 		{
-			start(F);
+			if(!start(F))
+			{
+				printf("\n\nreal root is not possible for this equation!!!!");
+				exit(0);
+			}
 			meth(l,u,F);
 			return m;
 		}			
