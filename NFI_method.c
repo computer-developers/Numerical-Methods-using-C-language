@@ -1,13 +1,16 @@
 #include<conio.h>
 #include<stdio.h>
-#define size 5
-float a[size],x0,x,h,p;
+int size;
+float *a,x0,x,h,p;
 void table();
 void p1();
 float NFI(float);
 void main()
 {
 	int i;
+	printf("\nenter number of inputs...");
+	scanf("%d",&size);
+	a=(float *)calloc(sizeof(float),size);
 	printf("\nenter starting value & difference...");
 	scanf("%f %f",&x0,&h);
 	for(i=0;i<size;i++)
