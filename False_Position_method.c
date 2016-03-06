@@ -1,13 +1,14 @@
 #include<stdio.h>
 #include<conio.h>
-float l,u,m;
+float l,u,m,k;
 float f(float);
-void bisect(float,float);
+void fp(float,float);
 void main()
 {
 	printf("enter limits...");
 	scanf("%f %f",&l,&u);
-	bisect(l,u);
+	k=u;
+	fp(l,u);
 	printf("\nanswer=%f",m);
 }
 float f(float x)
@@ -16,15 +17,18 @@ float f(float x)
 	y=x*x*x-x-11;
 	return y;
 }
-void bisect(float a,float b)
+void fp(float g,float h)
 {
-	if(a-b<0.001&&b-a<0.001)
+	if(f(h)==f(g))
 		return;
-	m=(a+b)/2;
+	m=(g*f(h)-h*f(g))/(f(h)-f(g));
+	if(k-m<0.001&&m-k<0.001)
+		return;
+	k=m;
 	if(f(m)>0)
-		bisect(a,m);
+		fp(g,m);
 	else if(f(m)<0)
-		bisect(m,b);
+		fp(m,h);
 	else
 		return;
 }
