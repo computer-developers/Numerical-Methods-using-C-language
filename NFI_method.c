@@ -15,14 +15,14 @@ void main()
 		printf("\nenter value of f(%.1f)",x0+i*h);
 		scanf("%f",&a[i]);
 	}
-	printf("\nenter value of x..");
-	scanf("%f",&x);
 	table();
 	printf("\ntable of y..");
 	for(i=0;i<size;i++)
 	{
 		printf("\n%f",a[i]);
 	}
+	printf("\nenter value of x..");
+	scanf("%f",&x);
 	p1();
 	printf("\nf(%.2f) = %f",x,NFI(x));
 }
